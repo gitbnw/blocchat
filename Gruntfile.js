@@ -1,10 +1,10 @@
 module.exports = function(grunt) {
 
-    grunt.registerTask( 'default', [ 'clean', 'copy', 'hapi', 'watch'] );
+    grunt.registerTask('default', ['clean', 'sass', 'copy', 'hapi', 'watch']);
 
-    grunt.registerTask( 'build', [ 'clean', 'copy' ] );
+    grunt.registerTask('build', ['clean', 'copy']);
 
-    grunt.registerTask( 'run', [ 'hapi', 'watch' ]);
+    grunt.registerTask('run', ['hapi', 'watch']);
 
     grunt.initConfig({
 
@@ -16,11 +16,13 @@ module.exports = function(grunt) {
                     './app/styles/**/*.css',
                     './app/pages/**/*.html',
                     './app/templates/**/*.html',
+                    './app/sass/**/*.scss',
                     'Gruntfile.js'
                 ],
                 tasks: [
                     'clean',
-                    'copy'
+                    'copy',
+                    'sass'
                 ],
                 options: {
                     spawn: false
@@ -32,33 +34,45 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    src: [ './assets/**/*.{png,jpg,jpeg,mp3}' ],
+                    src: ['./assets/**/*.{png,jpg,jpeg,mp3}'],
                     dest: './dist',
                     cwd: './app'
                 }, {
                     expand: true,
-                    src: [ './**/*.html' ],
+                    src: ['./**/*.html'],
                     dest: './dist',
                     cwd: './app/pages'
                 }, {
                     expand: true,
-                    src: [ './**/*.css' ],
+                    src: ['./**/*.css'],
                     dest: './dist/styles',
                     cwd: './app/styles'
                 }, {
                     expand: true,
-                    src: [ './**/*.js' ],
+                    src: ['./**/*.js'],
                     dest: './dist/scripts',
                     cwd: './app/scripts'
                 }, {
                     expand: true,
-                    src: [ './**/*.html' ],
+                    src: ['./**/*.html'],
                     dest: './dist/templates',
                     cwd: './app/templates'
+                }, {
+                    expand: true,
+                    src: ['furtive.min.css'],
+                    dest: 'dist/styles',
+                    cwd: 'node_modules/furtive/css'
                 }]
+            },
+
+        },
+        sass: {
+            dist: {
+                files: {
+                    './app/styles/home.css': './app/styles/sass/home.scss'
+                }
             }
         },
-
         hapi: {
             custom_options: {
                 options: {
@@ -74,6 +88,7 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-hapi');
