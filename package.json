@@ -13,7 +13,6 @@
   "author": "Bloc Inc",
   "license": "ISC",
   "dependencies": {
-    "furtive": "^2.2.4",
     "hapi": "~7.5.0",
     "path": "^0.4.9"
   },
