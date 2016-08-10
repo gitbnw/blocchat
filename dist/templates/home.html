@@ -4,14 +4,13 @@
 
   <button type="button" class="btn btn-default" ng-click="home.showModal()">New Chatroom</button>
     <ul class="nav nav-pills nav-stacked">
-      <li ng-repeat="room in home.rooms track by $index"><a href="#">Room</a></li>
+      <li ng-repeat="room in home.rooms track by $index"><a href="#">{{room.name}}</a></li>
     </ul>
 
   </nav>
 
   <main class="col-sm-10">
 
-     <p>main content</p>
 
   </main>
 

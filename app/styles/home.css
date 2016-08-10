@@ -10,3 +10,7 @@ ul.nav a {
   text-decoration: none;
   font-family: 'Lato', sans-serif;
 }
+
+.add-room button {
+  margin-right:12px;
+}

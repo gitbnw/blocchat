@@ -1,17 +1,24 @@
-
-    <div class="modal-header">
-        <h3 class="modal-title">I'm a modal!</h3>
-    </div>
-    <div class="modal-body">
-            <ul>
-        <li ng-repeat="item in items">
-            <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-        </li>
-    </ul>
-    Selected: <b>{{ selected.item }}</b>
-        MODAL CONTENT
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-    </div>
+<div class="modal-header">
+    <h4 class="modal-title">Create new room</h4>
+</div>
+<div class="modal-body">
+    <form role="form" class="add-room" ng-submit="submit()">
+        <div class="form-group">
+            <label class="control-label" for="inputRoomName">Enter a room name</label>
+            <div class="">
+                <input type="text" class="form-control" id="inputRoomName" placeholder="Cool kids chat room" ng-model="formData.name" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create Room</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+  <pre>
+      {{ formData }}
+  </pre>
+</div>
