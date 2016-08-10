@@ -1,10 +1,10 @@
  (function() {
-     function ModalCtrl() {
+     function ModalCtrl($scope) {
 
 
      }
 
      angular
          .module('bloc_chat')
-         .controller('ModalCtrl', ModalCtrl);
+         .controller('ModalCtrl', ['$scope', ModalCtrl]);
  })();

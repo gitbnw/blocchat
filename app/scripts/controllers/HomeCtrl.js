@@ -1,15 +1,14 @@
  (function() {
-     function HomeCtrl(roomService, $uibModal, $log, $document) {
+     function HomeCtrl(roomService, $uibModal, $log, $document, $scope) {
 
          this.rooms = roomService.all;
 
          this.showModal = function() {
 
              var modalInstance = $uibModal.open({
-                 templateUrl: 'modal.html',
+                 templateUrl: './templates/modal.html',
                  controller: 'ModalCtrl',
                  size: 'sm',
-                 appendTo: $document.find('div').eq(0)
              });
 
              modalInstance.result.then(function(selectedItem) {
@@ -22,5 +21,5 @@
 
      angular
          .module('bloc_chat')
-         .controller('HomeCtrl', ['roomService', '$uibModal', '$log', '$document',HomeCtrl]);
+         .controller('HomeCtrl', ['roomService', '$uibModal', '$log', '$document', '$scope', HomeCtrl]);
  })();
