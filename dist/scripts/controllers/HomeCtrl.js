@@ -17,6 +17,13 @@
                  $log.info('Modal dismissed at: ' + new Date());
              });
          };
+
+         this.setCurrentRoom = function(room) {
+          $scope.currentRoom = room;
+          this.messages = roomService.getMessages(room.$id);
+         }
+
+
      };
 
      angular
