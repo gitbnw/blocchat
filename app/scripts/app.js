@@ -13,6 +13,6 @@
          });
      }
   angular
-    .module('bloc_chat', ['ui.router', 'firebase', 'ui.bootstrap'])
+    .module('bloc_chat', ['ui.router', 'firebase', 'ui.bootstrap', 'ngCookies'])
     .config(config);
 })();

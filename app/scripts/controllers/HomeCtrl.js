@@ -1,6 +1,15 @@
  (function() {
      function HomeCtrl(roomService, $uibModal, $log, $document, $scope) {
 
+         function BlocChatCookies($cookies, $uibModal) {
+             var currentUser = $cookies.get('blocChatCurrentUser');
+             if (!currentUser || currentUser === '') {
+                 $uibModal.open({
+                     // Modal configuration object properties
+                 })
+             }
+         }
+
          this.rooms = roomService.all;
 
          this.showModal = function() {
@@ -19,8 +28,8 @@
          };
 
          this.setCurrentRoom = function(room) {
-          $scope.currentRoom = room;
-          this.messages = roomService.getMessages(room.$id);
+             $scope.currentRoom = room;
+             this.messages = roomService.getMessages(room.$id);
          }
 
 

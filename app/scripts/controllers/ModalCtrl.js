@@ -7,8 +7,8 @@
 
              $scope.formData = {};
 
-             $scope.submit = function() {
-                 var ref = firebase.database().ref().child("rooms");
+             $scope.submit = function(table) {
+                 // var ref = firebase.database().ref().child("rooms");
                  var rooms = roomService.all
                  rooms.$add($scope.formData).then(function() {
                          $uibModalInstance.dismiss('submit');
