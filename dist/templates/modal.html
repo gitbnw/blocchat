@@ -1,18 +1,19 @@
 <div class="modal-header">
-    <h4 class="modal-title">Create new room</h4>
+    <h4 class="modal-title">{{ modalAttr.title }}</h4>
 </div>
 <div class="modal-body">
-    <form role="form" class="add-room" ng-submit="submit()">
+    <form role="form" ng-class="{{ modalAttr.class}}" ng-submit="add()">
         <div class="form-group">
-            <label class="control-label" for="inputRoomName">Enter a room name</label>
+            <label class="control-label" for="{{ modalAttr.id }}">{{ modalAttr.inputLbl }}</label>
             <div class="">
-                <input type="text" class="form-control" id="inputRoomName" placeholder="Cool kids chat room" ng-model="formData.name" />
+                <input type="text" class="form-control" id="{{ modalAttr.id }}" placeholder="{{ modalAttr.pholder }}" ng-model="formData.name" />
             </div>
         </div>
         <div class="form-group">
             <div>
-                <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
-                <button type="submit" class="btn btn-primary">Create Room</button>
+                <button type="button" class="btn btn-warning" ng-hide="modalAttr.noDismiss" ng-click="cancel()">Cancel</button>
+
+                <button type="submit" class="btn btn-primary">{{ modalAttr.submitLbl }}</button>
             </div>
         </div>
     </form>

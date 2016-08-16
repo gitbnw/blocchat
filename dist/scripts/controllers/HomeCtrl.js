@@ -3,24 +3,37 @@
 
          this.rooms = roomService.all;
 
+         $scope.modalAttr = {
+            title: "Create a new room",
+            class: "add-room",
+            id: "inputRoomName",
+            pholder: "Cool chat room",
+            inputLbl: "Room name",
+            submitLbl: "Create Room",
+            item: "rooms",
+            noDismiss: false
+         }
+
+
          this.showModal = function() {
 
-             var modalInstance = $uibModal.open({
+             $uibModal.open({
                  templateUrl: './templates/modal.html',
                  controller: 'ModalCtrl',
                  size: 'sm',
+                 resolve: {
+                     modalAttr: function() {
+                         return $scope.modalAttr;
+                     }
+                 }
              });
 
-             modalInstance.result.then(function(selectedItem) {
-                 this.selected = selectedItem;
-             }, function() {
-                 $log.info('Modal dismissed at: ' + new Date());
-             });
+
          };
 
          this.setCurrentRoom = function(room) {
-          $scope.currentRoom = room;
-          this.messages = roomService.getMessages(room.$id);
+             $scope.currentRoom = room;
+             this.messages = roomService.getMessages(room.$id);
          }
 
 

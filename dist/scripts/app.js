@@ -1,4 +1,33 @@
 (function() {
+    function BlocChatCookies($cookies, $uibModal) {
+        var currentUser = $cookies.get('blocChatCurrentUser');
+        if (!currentUser || currentUser === '') {
+
+            modalAttr = {
+                title: "Create a username",
+                class: "add-username",
+                id: "inputUserame",
+                pholder: "My cool name",
+                submitLbl: "Create username",
+                inputLbl: "User name",
+                item: "user",
+                noDismiss: true
+            }
+
+            $uibModal.open({
+                templateUrl: './templates/modal.html',
+                controller: 'ModalCtrl',
+                backdrop: 'static',
+                size: 'sm',
+                resolve: {
+                    modalAttr: function() {
+                        return modalAttr;
+                    }
+                }
+            })
+        }
+    }
+
      function config($stateProvider, $locationProvider) {
       $locationProvider
          .html5Mode({
@@ -13,6 +42,7 @@
          });
      }
   angular
-    .module('bloc_chat', ['ui.router', 'firebase', 'ui.bootstrap'])
-    .config(config);
+    .module('bloc_chat', ['ui.router', 'firebase', 'ui.bootstrap', 'ngCookies'])
+    .config(config)
+    .run(['$cookies', '$uibModal', BlocChatCookies]);
 })();
