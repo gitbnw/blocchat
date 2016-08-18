@@ -1,17 +1,17 @@
  (function() {
-     function HomeCtrl(roomService, $uibModal, $log, $document, $scope) {
+     function HomeCtrl(roomService, Message, $uibModal, $cookies, $document, $scope) {
 
          this.rooms = roomService.all;
 
          $scope.modalAttr = {
-            title: "Create a new room",
-            class: "add-room",
-            id: "inputRoomName",
-            pholder: "Cool chat room",
-            inputLbl: "Room name",
-            submitLbl: "Create Room",
-            item: "rooms",
-            noDismiss: false
+             title: "Create a new room",
+             class: "add-room",
+             id: "inputRoomName",
+             pholder: "Cool chat room",
+             inputLbl: "Room name",
+             submitLbl: "Create Room",
+             item: "rooms",
+             noDismiss: false
          }
 
 
@@ -36,10 +36,20 @@
              this.messages = roomService.getMessages(room.$id);
          }
 
+         $scope.messageData = {};
 
-     };
+         this.sendMessage = function() {
+             var cookieWObject = $cookies.getObject('blocChatCurrentUser');
+             var username = cookieWObject.currentUser.name;
+             $scope.messageData.username = username
+             $scope.messageData.roomId = $scope.currentRoom.$id
+             Message.send($scope.messageData)
+         }
+
+     }
+
 
      angular
          .module('bloc_chat')
-         .controller('HomeCtrl', ['roomService', '$uibModal', '$log', '$document', '$scope', HomeCtrl]);
+         .controller('HomeCtrl', ['roomService', 'Message', '$uibModal', '$cookies', '$document', '$scope', HomeCtrl]);
  })();

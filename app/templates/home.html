@@ -1,17 +1,31 @@
 <div class="row main-row fill">
-    <nav role='navigation' class="col-sm-4 sidebar">
+    <nav role='navigation' class="col-sm-2 sidebar">
         <h3 class="title">Bloc Chat</h3>
         <button type="button" class="btn btn-default show-modal" ng-click="home.showModal()">New Room</button>
         <ul class="nav nav-pills nav-stacked">
             <li ng-repeat="room in home.rooms track by $index">
-              <a href="#" ng-click="home.setCurrentRoom(room)">{{room.name}}</a>
+                <a href="#" ng-click="home.setCurrentRoom(room)">{{room.name}}</a>
             </li>
         </ul>
     </nav>
-    <main class="col-sm-8 main-content-area">
-    <h3>{{ currentRoom.name }}</h3>
+    <main class="col-sm-10 main-content-area">
+        <div class="chat">
+            <h3>{{ currentRoom.name }}</h3>
             <div ng-repeat="message in home.messages track by $index">
-              <span class="text-warning"> {{message.username}} :  </span><span class="text-info"> {{message.content}} </span>
+                <span class="text-warning"> {{message.username}} :  </span><span class="text-info"> {{message.content}} </span>
             </div>
+        </div>
+        <footer class="footer" ng-hide="!currentRoom">
+            <form id="messageForm" class="form" role="form"  ng-submit="home.sendMessage()">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control transparent-input" id="message" ng-model="messageData.content">
+                        <div class="clear">
+                            <button type="submit" class="btn btn-info">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </footer>
     </main>
 </div>
