@@ -4,12 +4,12 @@
         if (!currentUser || currentUser === '') {
 
             modalAttr = {
-                title: "Create a username",
                 class: "add-username",
                 id: "inputUserame",
-                pholder: "My cool name",
-                submitLbl: "Create username",
-                inputLbl: "User name",
+                pholder: "username",
+                submitLbl: "Log In",
+                inputType: 'text',
+                inputLbl: "username",
                 item: "user",
                 noDismiss: true
             }
