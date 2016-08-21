@@ -4,14 +4,8 @@
         if (!currentUser || currentUser === '') {
 
             modalAttr = {
-                class: "add-username",
-                id: "inputUserame",
-                pholder: "username",
-                submitLbl: "Log In",
-                inputType: 'text',
-                inputLbl: "username",
-                item: "user",
-                noDismiss: true
+                tab: "Login",
+                form: "formLogin",
             }
 
             $uibModal.open({

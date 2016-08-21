@@ -10,7 +10,7 @@
     <div id="mainView">
         <!-- <div ng-include="currentTab"></div> -->
         <form role="form" ng-class="" ng-submit="">
-            <div ng-repeat="field in fields">
+            <div ng-repeat="field in modalAttr.form.fields">
                 <div ng-include="getFieldTemplateUrl(field)"></div>
             </div>
             <!--             <div class="form-group">

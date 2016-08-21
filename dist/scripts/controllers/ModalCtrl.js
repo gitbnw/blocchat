@@ -1,5 +1,5 @@
  (function() {
-     function ModalCtrl(roomService, $scope, $uibModalInstance, modalAttr, $cookies) {
+     function ModalCtrl(roomService, $scope, $uibModalInstance, modalAttr, Fixtures, $cookies) {
 
 
          $scope.cancel = function() {
@@ -9,6 +9,7 @@
          $scope.formData = {};
 
          $scope.modalAttr = modalAttr;
+         console.log(modalAttr)
 
          $scope.add = function() {
 
@@ -68,5 +69,5 @@
 
      angular
          .module('bloc_chat')
-         .controller('ModalCtrl', ['roomService', '$scope', '$uibModalInstance', 'modalAttr', '$cookies', ModalCtrl]);
+         .controller('ModalCtrl', ['roomService', '$scope', '$uibModalInstance', 'modalAttr', 'Fixtures', '$cookies', ModalCtrl]);
  })();

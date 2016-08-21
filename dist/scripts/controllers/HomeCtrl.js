@@ -14,6 +14,12 @@
              noDismiss: false
          }
 
+         $scope.documentData = {};
+         $scope.getFieldTemplateUrl = function(field) {
+           console.log(field)
+             return '/templates/fields/' + field.dataType + '.html';
+         };
+
 
          this.showModal = function() {
 
