@@ -7,14 +7,63 @@
          };
 
          $scope.formData = {};
+         // $scope.formData.model = {};
 
          $scope.modalAttr = modalAttr;
-         console.log(modalAttr)
+
+         $scope.login = function() {
+             // firebase.auth().createUserWithEmailAndPassword($scope.formData.email, $scope.formData.password).catch(function(error) {
+             //     // Handle Errors here.
+             //     var errorCode = error.code;
+             //     var errorMessage = error.message;
+             //     // ...
+             // });
+             var currentUser = $scope.formData
+
+             firebase.auth().signInWithEmailAndPassword($scope.formData.email, $scope.formData.password).catch(function(error) {
+                 // Handle Errors here.
+                 var errorCode = error.code;
+                 var errorMessage = error.message;
+                 console.log(error.message)
+                 // ...
+             });
+
+
+             if (!currentUser || !currentUser.authorized) {
+
+
+             }
+             function setCookie(callback) {
+                 var currentUser = $scope.formData
+                 var cookie = {};
+
+                 cookie.currentUser = currentUser
+                 cookie.currentUser.authorized = true;
+                 $cookies.putObject('blocChatCurrentUser', cookie)
+                 callback();
+             }
+
+
+             setCookie(function() {
+                 $uibModalInstance.dismiss('authorized');
+
+             });
+
+
+         };
+
+
+         console.log(modalAttr.form.submit);
+
+         $scope.submit = $scope.login;
 
          $scope.getFieldTemplateUrl = function(field) {
-             console.log(field)
              return '/templates/fields/' + field.dataType + '.html';
          };
+
+
+
+
 
          $scope.add = function() {
 
@@ -25,25 +74,9 @@
                      $uibModalInstance.dismiss('submit');
                  })
              }
-             if ($scope.modalAttr.form === "formLogin") {
 
-                 function setCookie(callback) {
-                     var currentUser = $scope.formData
-                     var cookie = {};
-
-                     cookie.currentUser = currentUser
-                     $cookies.putObject('blocChatCurrentUser', cookie)
-                     callback();
-
-
-                     setCookie(function() {
-                         $uibModalInstance.dismiss('named');
-
-                     });
-
-                 }
-             }
          }
+
          $scope.tabs = [{
              title: 'Login',
              inputLbl: 'username',

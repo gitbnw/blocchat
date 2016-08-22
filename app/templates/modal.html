@@ -3,43 +3,21 @@
         <li ng-repeat="tab in tabs" ng-class="{active:isActiveTab(tab.title)}" ng-click="onClickTab(tab)"><a href="#">{{tab.title}}</a></li>
     </ul>
 </div>
-<!-- <div class="modal-header">
-    <h4 class="modal-title">{{ modalAttr.title }}</h4>
-</div> -->
 <div class="modal-body">
     <div id="mainView">
-        <!-- <div ng-include="currentTab"></div> -->
-        <form role="form" ng-class="" ng-submit="">
+        <form role="form" ng-class="" ng-submit= submit() >
             <div ng-repeat="field in modalAttr.form.fields">
                 <div ng-include="getFieldTemplateUrl(field)"></div>
             </div>
-            <!--             <div class="form-group">
-                <label class="control-label" for="{{ modalAttr.name }}">{{ modalAttr.nameLbl }}</label>
-                <input type="{{modalAttr.inputType}}" class="form-control" id="{{ modalAttr.id }}" placeholder="{{ modalAttr.pholder }}" ng-model="formData.name" />
-            </div>
-
-             <div class="form-group">
-                <label class="control-label" for="{{ modalAttr.id }}">{{ modalAttr.inputLbl }}</label>
-                <input type="{{modalAttr.inputType}}" class="form-control" id="{{ modalAttr.id }}" placeholder="{{ modalAttr.pholder }}" ng-model="formData.name" />
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="password">password</label>
-                <input type="password" id="password" class="form-control" ng-model="formData.password" />
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="password">confirm password</label>
-                <input type="password" id="password" class="form-control" ng-model="formData.password" />
-            </div> -->
             <div class="form-group">
                 <div>
                     <button type="button" class="btn btn-warning" ng-hide="modalAttr.noDismiss" ng-click="cancel()">Cancel</button>
-                    <button type="submit" class="btn btn-primary">{{ modalAttr.submitLbl }}</button>
+                    <button type="submit" class="btn btn-primary">{{ modalAttr.form.submitBtnLbl }}</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 <div class="modal-footer">
+<pre>{{formData }}</pre>
 </div>

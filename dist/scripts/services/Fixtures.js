@@ -3,10 +3,13 @@
          var Fixtures = {};
 
          function Field(name) {
+             this.name = name;
+             this.model = "formData." + name;
              this.type = name;
              this.id = name;
              this.label = name;
              this.placeholder = name;
+             this.dataType = "default";
          }
 
          var fieldEmail = new Field("email");
@@ -18,10 +21,22 @@
          var fieldCPassword = new Field("confirm password")
          fieldCPassword.type = "password";
 
+         var login = function() {
+
+             $scope.authData = null;
+             $scope.error = null;
+
+             auth.$authAnonymously().then(function(authData) {
+                 $scope.authData = authData;
+             }).catch(function(error) {
+                 $scope.error = error;
+             });
+         };
 
          var formLogin = {
              title: 'Login',
              submitBtnLbl: 'Log In',
+             submit: '$scope.login',
              fields: [
                  fieldEmail,
                  fieldPassword
@@ -39,16 +54,7 @@
              ]
          };
 
-        //  var formLogin = {
-        //      title: 'Login',
-        //      submitBtnLbl: 'Log In',
-        //      fields: [
-        //          fieldEmail,
-        //          fieldPassword
-        //      ]
-        //  };
-
-          var formCreateRoom = {
+         var formCreateRoom = {
              title: 'Create room',
              submitBtnLbl: 'Create',
              fields: [
@@ -56,6 +62,10 @@
              ]
          };
 
+         Fixtures.getForm = function() {
+
+             return formLogin;
+         };
 
          return Fixtures;
      }
