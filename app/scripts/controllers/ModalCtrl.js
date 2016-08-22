@@ -11,6 +11,11 @@
          $scope.modalAttr = modalAttr;
          console.log(modalAttr)
 
+         $scope.getFieldTemplateUrl = function(field) {
+             console.log(field)
+             return '/templates/fields/' + field.dataType + '.html';
+         };
+
          $scope.add = function() {
 
              if ($scope.modalAttr.item === "rooms") {
@@ -20,7 +25,7 @@
                      $uibModalInstance.dismiss('submit');
                  })
              }
-             if ($scope.modalAttr.item === "user") {
+             if ($scope.modalAttr.form === "formLogin") {
 
                  function setCookie(callback) {
                      var currentUser = $scope.formData
@@ -29,28 +34,28 @@
                      cookie.currentUser = currentUser
                      $cookies.putObject('blocChatCurrentUser', cookie)
                      callback();
+
+
+                     setCookie(function() {
+                         $uibModalInstance.dismiss('named');
+
+                     });
+
                  }
-
-                 setCookie(function() {
-                     $uibModalInstance.dismiss('named');
-
-                 });
-
              }
          }
-
          $scope.tabs = [{
              title: 'Login',
              inputLbl: 'username',
              pholder: 'username',
              inputType: 'text'
-             // url: 'one.tpl.html'
+                 // url: 'one.tpl.html'
          }, {
              title: 'Sign up',
              inputLbl: 'email',
              pholder: 'email',
              inputType: 'email'
-             // url: 'two.tpl.html'
+                 // url: 'two.tpl.html'
          }];
 
          $scope.currentTab = 'Login';
@@ -58,7 +63,7 @@
          $scope.onClickTab = function(tab) {
              $scope.currentTab = tab.title;
              $scope.modalAttr = tab
-             //
+                 //
          }
 
          $scope.isActiveTab = function(tabTitle) {

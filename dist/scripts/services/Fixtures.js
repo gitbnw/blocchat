@@ -39,14 +39,14 @@
              ]
          };
 
-         var formLogin = {
-             title: 'Login',
-             submitBtnLbl: 'Log In',
-             fields: [
-                 fieldEmail,
-                 fieldPassword
-             ]
-         };
+        //  var formLogin = {
+        //      title: 'Login',
+        //      submitBtnLbl: 'Log In',
+        //      fields: [
+        //          fieldEmail,
+        //          fieldPassword
+        //      ]
+        //  };
 
           var formCreateRoom = {
              title: 'Create room',

@@ -1,11 +1,11 @@
 (function() {
-    function BlocChatCookies($cookies, $uibModal) {
+    function BlocChatCookies($cookies, $uibModal, Fixtures) {
         var currentUser = $cookies.get('blocChatCurrentUser');
         if (!currentUser || currentUser === '') {
 
             modalAttr = {
                 tab: "Login",
-                form: "formLogin",
+                form: Fixtures.formLogin,
             }
 
             $uibModal.open({
@@ -38,5 +38,5 @@
   angular
     .module('bloc_chat', ['ui.router', 'firebase', 'ui.bootstrap', 'ngCookies'])
     .config(config)
-    .run(['$cookies', '$uibModal', BlocChatCookies]);
+    .run(['$cookies', '$uibModal', 'Fixtures', BlocChatCookies]);
 })();
