@@ -1,18 +1,18 @@
 <div class="modal-tabs" id="tabs">
     <ul class="nav nav-tabs">
-        <li ng-repeat="tab in tabs" ng-class="{active:isActiveTab(tab.title)}" ng-click="onClickTab(tab)"><a href="#">{{tab.title}}</a></li>
+        <li ng-repeat="tab in tabs" ng-class="{active:isActiveTab(tab.id)}" ng-click="onClickTab(tab)"><a href="#">{{tab.title}}</a></li>
     </ul>
 </div>
 <div class="modal-body">
     <div id="mainView">
-        <form role="form" ng-class="" ng-submit= submit() >
-            <div ng-repeat="field in modalAttr.form.fields">
+        <form role="form" id="modal-form' ng-class="" ng-submit= currentTab["submit"] >
+            <div ng-repeat="field in currentTab.form.fields">
                 <div ng-include="getFieldTemplateUrl(field)"></div>
             </div>
             <div class="form-group">
                 <div>
-                    <button type="button" class="btn btn-warning" ng-hide="modalAttr.noDismiss" ng-click="cancel()">Cancel</button>
-                    <button type="submit" class="btn btn-primary">{{ modalAttr.form.submitBtnLbl }}</button>
+                    <button type="button" class="btn btn-warning" ng-hide="currentTab.noDismiss" ng-click="cancel()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">{{ currentTab.form.submitBtnLbl }}</button>
                 </div>
             </div>
         </form>

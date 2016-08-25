@@ -20,6 +20,8 @@
          fieldRoomname.type = "text";
          var fieldCPassword = new Field("cpassword")
          fieldCPassword.type = "password";
+         fieldCPassword.label = "confirm password";
+         fieldCPassword.placeholder = "do it again";
 
          var login = function() {
 

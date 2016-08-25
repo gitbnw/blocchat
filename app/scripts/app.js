@@ -1,26 +1,21 @@
 (function() {
 
     function BlocChatCookies($cookies, $uibModal, Fixtures) {
-        var form = Fixtures.getForm('formLogin');
+        // var form = Fixtures.getForm('formLogin');
         var currentUser = $cookies.get('blocChatCurrentUser');
 
         if (!currentUser || !currentUser.authorized) {
-
-            modalAttr = {
-                tab: "Login",
-                form: form,
-            }
 
             $uibModal.open({
                 templateUrl: './templates/modal.html',
                 controller: 'ModalCtrl',
                 backdrop: 'static',
-                size: 'sm',
-                resolve: {
-                    modalAttr: function() {
-                        return modalAttr;
-                    }
-                }
+                size: 'sm'
+                // resolve: {
+                //     modalAttr: function() {
+                //         return activeTab;
+                //     }
+                // }
             })
         }
     }
