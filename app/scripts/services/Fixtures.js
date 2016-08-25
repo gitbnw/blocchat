@@ -10,7 +10,7 @@
              this.label = name;
              this.placeholder = name;
              this.dataType = "default";
-         }
+         };
 
          var fieldEmail = new Field("email");
          var fieldPassword = new Field("password");
@@ -18,7 +18,7 @@
          fieldUsername.type = "text";
          var fieldRoomname = new Field("roomname");
          fieldRoomname.type = "text";
-         var fieldCPassword = new Field("confirm password")
+         var fieldCPassword = new Field("cpassword")
          fieldCPassword.type = "password";
 
          var login = function() {
@@ -62,9 +62,16 @@
              ]
          };
 
-         Fixtures.getForm = function() {
+         var forms = {
+            "formLogin": formLogin,
+            "formSignUp": formSignUp,
+            "formCreateRoom": formCreateRoom
+         }
 
-             return formLogin;
+         Fixtures.getForm = function(formName) {
+            var form = forms[formName]
+
+             return form;
          };
 
          return Fixtures;

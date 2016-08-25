@@ -1,7 +1,7 @@
 (function() {
 
     function BlocChatCookies($cookies, $uibModal, Fixtures) {
-        var form = Fixtures.getForm();
+        var form = Fixtures.getForm('formLogin');
         var currentUser = $cookies.get('blocChatCurrentUser');
 
         if (!currentUser || !currentUser.authorized) {
