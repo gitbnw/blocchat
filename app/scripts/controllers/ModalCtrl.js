@@ -7,40 +7,48 @@
 
          $scope.formData = {};
          // $scope.formData.model = {};
-         // $scope.modalAttr = modalAttr;
+
+         var setCookie = function(callback) {
+             var currentUser = $scope.formData
+             var cookie = {};
+             cookie.currentUser = currentUser
+             cookie.currentUser.authorized = true;
+             $cookies.putObject('blocChatCurrentUser', cookie)
+             callback();
+         }
 
          var login = function() {
              console.log('login call')
              var currentUser = $scope.formData
              firebase.auth().signInWithEmailAndPassword($scope.formData.email, $scope.formData.password).then(function(data) {
                  console.log(data)
+                 setCookie(function() {
+                     $uibModalInstance.dismiss('authorized');
+                 });
              }).catch(function(error) {
                  // Handle Errors here.
                  var errorCode = error.code;
                  var errorMessage = error.message;
+                 $scope.feedback = errorMessage
                  console.log(error)
                      // ...
              });
 
+             // function setCookie(callback) {
+             //     var currentUser = $scope.formData
+             //     var cookie = {};
+             //     cookie.currentUser = currentUser
+             //     cookie.currentUser.authorized = true;
+             //     $cookies.putObject('blocChatCurrentUser', cookie)
+             //     callback();
+             // }
 
-
-             function setCookie(callback) {
-                 var currentUser = $scope.formData
-                 var cookie = {};
-                 cookie.currentUser = currentUser
-                 cookie.currentUser.authorized = true;
-                 $cookies.putObject('blocChatCurrentUser', cookie)
-                 callback();
-             }
-             setCookie(function() {
-                 $uibModalInstance.dismiss('authorized');
-             });
          };
 
          var signup = function() {
 
              if ($scope.formData.password === $scope.formData.cpassword) {
-
+                 $scope.feedback = "hey bro, passwords don't match"
                  firebase.auth().createUserWithEmailAndPassword($scope.formData.email, $scope.formData.password).then(function(data) {
                      login();
                  }).catch(function(error) {
@@ -63,9 +71,9 @@
 
          }
 
-         $scope.getTab = function(id) {
+         $scope.getUserTab = function(id) {
 
-             var selTab = $scope.tabs.filter(function(selTab) {
+             var selTab = modals.user.content.filter(function(selTab) {
                  console.log(selTab.id === id)
                  return selTab.id === id;
              })[0];
@@ -78,23 +86,43 @@
              return '/templates/fields/' + field.dataType + '.html';
          };
 
-         $scope.tabs = [{
-             id: 'login',
-             title: 'Login',
-             form: Fixtures.getForm('formLogin'),
-             submit: login,
-             noDismiss: true
-         }, {
-             id: 'signup',
-             title: 'Sign up',
-             form: Fixtures.getForm('formSignUp'),
-             submit: signup,
-             noDismiss: true
-         }];
+         var modals = {
+             user: {
+                 tabbed: true,
+                 content: {
+                     id: 'login',
+                     title: 'Login',
+                     form: Fixtures.getForm('formLogin'),
+                     submit: login,
+                     noDismiss: true
+                 }, {
+                     id: 'signup',
+                     title: 'Sign up',
+                     form: Fixtures.getForm('formSignUp'),
+                     submit: signup,
+                     noDismiss: true
+                 }
+             },
+             room: {
+                 tabbed: false,
 
-         $scope.currentTab = $scope.tabs[0];
+                 content: {
+                     id: 'room',
+                     title: 'Create room',
+                     form: Fixtures.getForm('formCreateRoom'),
+                     submit: login,
+                     noDismiss: false
+                 },
 
-         console.log($scope.currentTab.submit)
+             }
+         }
+
+         $scope.modal = modals.user
+         $scope.id = 'login'
+
+         $scope.currentTab = modals.user.content[0]
+
+
 
          $scope.master = {};
 
@@ -103,14 +131,13 @@
          };
 
          $scope.onClickTab = function(tab) {
-             $scope.currentTab = $scope.getTab(tab.id);
+             $scope.currentTab = $scope.getUserTab(tab.id);
              $scope.reset();
-             //
          }
          $scope.isActiveTab = function(id) {
+            console.log($scope.currentTab.id)
              return id == $scope.currentTab.id;
          }
-
 
 
 
