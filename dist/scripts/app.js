@@ -2,20 +2,16 @@
 
     function BlocChatCookies($cookies, $uibModal, Fixtures) {
         // var form = Fixtures.getForm('formLogin');
-        var currentUser = $cookies.get('blocChatCurrentUser');
+        var cookieWObject = $cookies.getObject('blocChatCurrentUser');
+        var authorized = cookieWObject.currentUser.authorized
 
-        if (!currentUser || !currentUser.authorized) {
-
+        if (!cookieWObject.currentUser.authorized) {
             $uibModal.open({
                 templateUrl: './templates/modal.html',
                 controller: 'ModalCtrl',
                 backdrop: 'static',
                 size: 'sm'
-                // resolve: {
-                //     modalAttr: function() {
-                //         return activeTab;
-                //     }
-                // }
+
             })
         }
     }

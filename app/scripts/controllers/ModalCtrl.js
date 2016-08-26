@@ -9,11 +9,22 @@
          // $scope.formData.model = {};
          // $scope.modalAttr = modalAttr;
 
+         var setCookie = function(callback) {
+             var currentUser = $scope.formData
+             var cookie = {};
+             cookie.currentUser = currentUser
+             cookie.currentUser.authorized = true;
+             $cookies.putObject('blocChatCurrentUser', cookie)
+             callback();
+         }
+
          var login = function() {
              console.log('login call')
              var currentUser = $scope.formData
              firebase.auth().signInWithEmailAndPassword($scope.formData.email, $scope.formData.password).then(function(data) {
-                 console.log(data)
+                 setCookie(function() {
+                     $uibModalInstance.dismiss('authorized');
+                 });
              }).catch(function(error) {
                  // Handle Errors here.
                  var errorCode = error.code;
@@ -22,19 +33,6 @@
                      // ...
              });
 
-
-
-             function setCookie(callback) {
-                 var currentUser = $scope.formData
-                 var cookie = {};
-                 cookie.currentUser = currentUser
-                 cookie.currentUser.authorized = true;
-                 $cookies.putObject('blocChatCurrentUser', cookie)
-                 callback();
-             }
-             setCookie(function() {
-                 $uibModalInstance.dismiss('authorized');
-             });
          };
 
          var signup = function() {
@@ -92,9 +90,9 @@
              noDismiss: true
          }];
 
-         $scope.currentTab = $scope.tabs[0];
 
-         console.log($scope.currentTab.submit)
+
+         $scope.currentModal = $scope.tabs[0];
 
          $scope.master = {};
 
@@ -103,18 +101,13 @@
          };
 
          $scope.onClickTab = function(tab) {
-             $scope.currentTab = $scope.getTab(tab.id);
+             $scope.currentModal = $scope.getTab(tab.id);
              $scope.reset();
              //
          }
          $scope.isActiveTab = function(id) {
-             return id == $scope.currentTab.id;
+             return id == $scope.currentModal.id;
          }
-
-
-
-
-
 
      }
      angular
