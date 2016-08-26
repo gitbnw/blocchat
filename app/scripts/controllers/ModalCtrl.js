@@ -10,9 +10,11 @@
          // $scope.modalAttr = modalAttr;
 
          var login = function() {
-console.log('login call')
+             console.log('login call')
              var currentUser = $scope.formData
-             firebase.auth().signInWithEmailAndPassword($scope.formData.email, $scope.formData.password).catch(function(error) {
+             firebase.auth().signInWithEmailAndPassword($scope.formData.email, $scope.formData.password).then(function(data) {
+                 console.log(data)
+             }).catch(function(error) {
                  // Handle Errors here.
                  var errorCode = error.code;
                  var errorMessage = error.message;
@@ -20,9 +22,7 @@ console.log('login call')
                      // ...
              });
 
-             if (!currentUser || !currentUser.authorized) {
 
-             }
 
              function setCookie(callback) {
                  var currentUser = $scope.formData
@@ -41,7 +41,9 @@ console.log('login call')
 
              if ($scope.formData.password === $scope.formData.cpassword) {
 
-                 firebase.auth().createUserWithEmailAndPassword($scope.formData.email, $scope.formData.password).catch(function(error) {
+                 firebase.auth().createUserWithEmailAndPassword($scope.formData.email, $scope.formData.password).then(function(data) {
+                     login();
+                 }).catch(function(error) {
                      // Handle Errors here.
                      var errorCode = error.code;
                      var errorMessage = error.message;
@@ -55,7 +57,7 @@ console.log('login call')
                      // ...
                  });
 
-                 login();
+
 
              }
 
