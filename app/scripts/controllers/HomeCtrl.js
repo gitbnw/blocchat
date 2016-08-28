@@ -1,16 +1,20 @@
  (function() {
-     function HomeCtrl(roomService, Message, Fixtures, $uibModal, $cookies, $document, $scope) {
+     function HomeCtrl(roomService, Message, Fixtures, modalService, $cookies, $document, $scope) {
+
+       var currentModal = {};
+
+       var roomModal = {
+         id: 'room',
+         title: 'Create room',
+        //  form: Fixtures.getForm('formCreateRoom'),
+        //  submit: create,
+         noDismiss: false,
+         tabbed: false
+       };
 
          this.rooms = roomService.all;
          var create = function() {
 
-         }
-         var roomModal = {
-             id: 'room',
-             title: 'Create room',
-             form: Fixtures.getForm('formCreateRoom'),
-             submit: create,
-             noDismiss: true
          }
 
          $scope.documentData = {};
@@ -21,9 +25,9 @@
          //  };
 
 
-         this.showModal = function() {
+         this.showModal = function(modal) {
 
-             $scope.currentModal = roomModal;
+             $scope.currentModal = modal;
 
              $uibModal.open({
                  templateUrl: './templates/modal.html',
@@ -54,5 +58,5 @@
 
      angular
          .module('bloc_chat')
-         .controller('HomeCtrl', ['roomService', 'Message', 'Fixtures', '$uibModal', '$cookies', '$document', '$scope', HomeCtrl]);
+         .controller('HomeCtrl', ['roomService', 'Message', 'Fixtures', 'modalService','$cookies', '$document', '$scope', HomeCtrl]);
  })();
