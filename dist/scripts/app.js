@@ -1,29 +1,32 @@
 (function() {
 
-    function BlocChatCookies($cookies, modalService, Fixtures) {
-        // var form = Fixtures.getForm('formLogin');
+    function chatCookies($cookies, modalService, Fixtures) {
 
-        var cookieWObject = $cookies.getObject('blocChatCurrentUser');
+        var cookieWObject = $cookies.getObject('chatCurrentUser');
 
         var loginTab = {
             form: Fixtures.getForm('formLogin'),
+            id: 'loginTab',
+            title: 'Login',
             default: true
-        };
+        }
 
         var signupTab = {
             form: Fixtures.getForm('formSignUp'),
+            id: 'signupTab',
+            title: 'Sign Up',
             default: false
-        };
+        }
 
         var userModal = {
             id: 'user',
             controller: 'HomeCtrl',
             noDismiss: true,
             tabbed: true,
-            tabs: {
-                login: loginTab,
-                signup: signupTab
-            }
+            tabs: [
+                loginTab,
+                signupTab
+            ]
         };
 
         if (!cookieWObject || !cookieWObject.currentUser.authorized) {
@@ -49,5 +52,5 @@
     angular
         .module('bloc_chat', ['ui.router', 'firebase', 'ui.bootstrap', 'ngCookies'])
         .config(config)
-        .run(['$cookies', 'modalService', 'Fixtures', BlocChatCookies]);
+        .run(['$cookies', 'modalService', 'Fixtures', chatCookies]);
 })();
