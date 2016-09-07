@@ -2,22 +2,19 @@
     function modalService($uibModal) {
 
         modalService.showModal = function(modal) {
+            modalService.modalObj = {}
+            modalService.modalObj = modal
 
             $uibModal.open({
                 templateUrl: './templates/modal.html',
                 controller: modal.controller,
                 backdrop: 'static',
                 size: 'sm',
-                resolve: {
-                    param: function() {
-                        return { 'modalObj': modal };
-                    }
-                }
             });
 
         }
 
-        modalService.getCurrentTab = function(modal, tabId) {
+        modalService.setCurrentTab = function(modal, tabId) {
             var selTab = modal.tabs.filter(function(selTab) {
                 return selTab.id === tabId;
             })[0];
@@ -34,6 +31,10 @@
             });
             return defaultTab;
         };
+
+        modalService.dismiss = function(status){
+            $uibModalInstance.dismiss(status)
+        }
 
         modalService.setCurrentForm = function(modal) {
             if (!modal.tabbed) {

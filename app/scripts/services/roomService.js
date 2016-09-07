@@ -10,6 +10,11 @@
                var ref = firebase.database().ref("messages");
                var messages = $firebaseArray(ref.orderByChild("roomId").equalTo(roomId))
                return messages
+            },
+            addRoom: function(roomName) {
+             rooms.$add(roomName).then(function() {
+                 $uibModalInstance.dismiss('submit');
+             })
             }
 
         };

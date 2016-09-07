@@ -23,22 +23,11 @@
          fieldCPassword.label = "confirm password";
          fieldCPassword.placeholder = "do it again";
 
-         var login = function() {
-
-             $scope.authData = null;
-             $scope.error = null;
-
-             auth.$authAnonymously().then(function(authData) {
-                 $scope.authData = authData;
-             }).catch(function(error) {
-                 $scope.error = error;
-             });
-         };
 
          var formLogin = {
              title: 'Login',
              submitBtnLbl: 'Log In',
-             submit: '$scope.login',
+             submitId: 'login',
              fields: [
                  fieldEmail,
                  fieldPassword
@@ -59,19 +48,20 @@
          var formCreateRoom = {
              title: 'Create room',
              submitBtnLbl: 'Create',
+             submitId: 'createRoom',
              fields: [
                  fieldRoomname
              ]
          };
 
          var forms = {
-            "formLogin": formLogin,
-            "formSignUp": formSignUp,
-            "formCreateRoom": formCreateRoom
+             "formLogin": formLogin,
+             "formSignUp": formSignUp,
+             "formCreateRoom": formCreateRoom
          }
 
          Fixtures.getForm = function(formName) {
-            var form = forms[formName]
+             var form = forms[formName]
 
              return form;
          };
@@ -81,5 +71,5 @@
 
      angular
          .module('bloc_chat')
-         .factory('Fixtures', Fixtures);
+         .factory('Fixtures', [Fixtures]);
  })();

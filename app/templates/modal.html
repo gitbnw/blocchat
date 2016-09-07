@@ -5,7 +5,7 @@
 </div>
 <div class="modal-body">
     <div id="mainView">
-        <form role="form" id="modal-form" ng-class="" ng-submit=currentModal.currentForm.submit()>
+        <form role="form" id="modal-form" ng-class="" ng-submit=submit[currentModal.currentForm.submitId](formData)>
             <div ng-repeat="field in currentModal.currentForm.fields">
                 <div ng-include="getFieldTemplateUrl(field)"></div>
             </div>

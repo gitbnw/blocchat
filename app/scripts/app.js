@@ -2,7 +2,7 @@
 
     function chatCookies($cookies, modalService, Fixtures) {
 
-        var cookieWObject = $cookies.getObject('chatCurrentUser');
+        var cookieWObject = $cookies.getObject('blocChatCurrentUser');
 
         var loginTab = {
             form: Fixtures.getForm('formLogin'),
