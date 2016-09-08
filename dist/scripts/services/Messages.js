@@ -1,5 +1,6 @@
+
 (function() {
-    function Message($firebaseArray) {
+    function Messages($firebaseArray) {
         var ref = firebase.database().ref("messages");
         var messages = $firebaseArray(ref);
 
@@ -17,5 +18,5 @@
 
     angular
         .module('bloc_chat')
-        .factory('Message', ['$firebaseArray', Message]);
+        .factory('Messages', ['$firebaseArray', Messages]);
 })();

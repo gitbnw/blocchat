@@ -1,5 +1,5 @@
 (function() {
-    function roomService($firebaseArray) {
+    function Rooms($firebaseArray) {
         var ref = firebase.database().ref("rooms");
         var rooms = $firebaseArray(ref);
 
@@ -10,16 +10,11 @@
                var ref = firebase.database().ref("messages");
                var messages = $firebaseArray(ref.orderByChild("roomId").equalTo(roomId))
                return messages
-            },
-            addRoom: function(roomName) {
-             rooms.$add(roomName).then(function() {
-                 $uibModalInstance.dismiss('submit');
-             })
             }
 
         };
     }
     angular
         .module('bloc_chat')
-        .factory('roomService', ['$firebaseArray', roomService]);
+        .factory('Rooms', ['$firebaseArray', Rooms]);
 })();

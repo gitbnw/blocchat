@@ -1,10 +1,10 @@
 <div class="row main-row fill">
     <nav role='navigation' class="col-sm-2 sidebar rooms">
         <h3 class="title">Bloc Chat</h3>
-        <button type="button" class="btn btn-default show-modal" ng-click="home.newRoom()">New Room</button>
+        <button type="button" class="btn btn-default show-modal" ng-click="rooms.openComponentModal('createRoom')">New Room</button>
         <ul class="nav nav-pills nav-stacked">
             <li ng-repeat="room in home.rooms track by $index">
-                <a href="#" ng-click="home.setCurrentRoom(room)">{{room.name}}</a>
+                <a href="#" ng-click="">{{room.name}}</a>
             </li>
         </ul>
     </nav>
