@@ -1,18 +1,15 @@
  (function() {
-     function mainCtrl($scope, Rooms, Messages, $uibModal) {
+     function mainCtrl($scope, Rooms, Messages, Fixtures, $uibModal) {
          var $ctrl = this;
-
-
 
          $ctrl.openComponentModal = function(modalConstruct) {
 
              $ctrl.modalConstruct = Fixtures.getModalConstruct(modalConstruct)
-
              var modalInstance = $uibModal.open({
                  animation: $ctrl.animationsEnabled,
                  component: 'modalComponent',
                  resolve: {
-                     modalProperties: function() {
+                     modalProps: function() {
                          return $ctrl.modalConstruct;
                      }
                  }
@@ -21,7 +18,7 @@
              modalInstance.result.then(function(selectedItem) {
                  $ctrl.selected = selectedItem;
              }, function() {
-                 $log.info('modal-component dismissed at: ' + new Date());
+
              });
          };
          $ctrl.rooms = Rooms.all;
@@ -43,5 +40,5 @@
      }
      angular
          .module('bloc_chat')
-         .controller('mainCtrl', ['$scope', 'Rooms', 'Messages', '$uibModal', mainCtrl])
+         .controller('mainCtrl', ['$scope', 'Rooms', 'Messages', 'Fixtures', '$uibModal', mainCtrl])
  })();

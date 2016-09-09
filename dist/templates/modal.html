@@ -1,7 +1,8 @@
-<div ng-controller="mainCtrl as $ctrl">
+
 <div class="modal-body">
+Hi I am modal
     <div id="mainView">
-    {{$ctrl.modalProperties.title}}
+    {{$ctrl.modalProps.form.title}}
         <form role="form" id="modal-form" ng-class="" ng-submit=$ctrl.form.submit(formData)>
             <div ng-repeat="field in $ctrl.form.fields">
                 <div ng-include="$ctrl.getFieldTemplateUrl(field)"></div>
@@ -19,4 +20,4 @@
 <div class="modal-footer">
     <pre>{{formData }}</pre>
 </div>
-</div>
+

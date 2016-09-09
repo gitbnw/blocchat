@@ -1,7 +1,7 @@
 <div class="row main-row fill">
     <nav role='navigation' class="col-sm-2 sidebar rooms">
         <h3 class="title">Bloc Chat</h3>
-        <button type="button" class="btn btn-default show-modal" ng-click="rooms.openComponentModal('createRoom')">New Room</button>
+        <button type="button" class="btn btn-default show-modal" ng-click="main.openComponentModal('createRoom')">New Room</button>
         <ul class="nav nav-pills nav-stacked">
             <li ng-repeat="room in home.rooms track by $index">
                 <a href="#" ng-click="">{{room.name}}</a>
@@ -29,3 +29,24 @@
         </footer>
     </main>
 </div>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <ul>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button type="button" class="btn btn-default" ng-click="$ctrl.open()">Open me!</button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.open('lg')">Large modal</button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.open('sm')">Small modal</button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.toggleAnimation()">Toggle Animation ({{ $ctrl.animationsEnabled }})</button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.openComponentModal()">Open a component modal!</button>
+    <div ng-show="$ctrl.selected">Selection from a modal: {{ $ctrl.selected }}</div>

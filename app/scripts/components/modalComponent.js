@@ -1,6 +1,5 @@
 (function() {
-    function modalComponent() {
-        return {
+    var modalComponent =  {
             templateUrl: 'templates/modal.html',
             bindings: {
                 resolve: '<',
@@ -11,7 +10,8 @@
                 var $ctrl = this;
 
                 $ctrl.$onInit = function() {
-                    $ctrl.modalProperties = $ctrl.resolve.modalProperties;
+                    console.log($ctrl.resolve)
+                    $ctrl.modalProps = $ctrl.resolve.modalProps;
                     // $ctrl.selected = {
                     //     item: $ctrl.items[0]
                     // };
@@ -25,10 +25,10 @@
                     $ctrl.dismiss({ $value: 'cancel' });
                 };
             }
-        }
+
     }
     angular
         .module('bloc_chat')
-        .directive('modalComponent', modalComponent);
+        .component('modalComponent', modalComponent);
 
 })();

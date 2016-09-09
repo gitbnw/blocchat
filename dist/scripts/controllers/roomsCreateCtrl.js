@@ -1,7 +1,7 @@
  (function() {
-     function roomsCreateCtrl($scope, $uibModalInstance, Rooms, modalProperties) {
+     function roomsCreateCtrl($scope, $uibModalInstance, Rooms, items) {
          var $ctrl = this;
-         $ctrl.modalProperties = modalProperties;
+         $ctrl.items = items;
 
          $ctrl.ok = function() {
              $uibModalInstance.close($ctrl.selected.item);
@@ -12,6 +12,6 @@
          };
          angular
              .module('bloc_chat')
-             .controller('roomsCreateCtrl', ['$scope', '$uibModalInstance', 'Rooms', 'modalProperties', roomsCreateCtrl]);
+             .controller('roomsCreateCtrl', ['$scope', '$uibModalInstance', 'Rooms', 'items', roomsCreateCtrl]);
      }
  })();
