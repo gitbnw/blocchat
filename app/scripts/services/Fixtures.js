@@ -23,6 +23,12 @@
          fieldCPassword.label = "confirm password";
          fieldCPassword.placeholder = "do it again";
 
+         var create = function(model) {
+             model.$add($scope.formData).then(function() {
+                 $uibModalInstance.dismiss('submit');
+             })
+         };
+
          var login = function() {
 
              $scope.authData = null;
@@ -58,7 +64,9 @@
 
          var formCreateRoom = {
              title: 'Create room',
+             submitId: 'createRoom',
              submitBtnLbl: 'Create',
+             noReset: true,
              fields: [
                  fieldRoomname
              ]
@@ -86,9 +94,9 @@
          };
 
          Fixtures.getModalConstruct = function(modalName) {
-            var modalConstruct = modalConstructs[modalName]
+             var modalConstruct = modalConstructs[modalName]
 
-            return modalConstruct
+             return modalConstruct
          }
 
          return Fixtures;

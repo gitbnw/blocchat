@@ -28,8 +28,6 @@
              $ctrl.messages = Rooms.getMessages(room.$id);
          }
 
-         $ctrl.messageData = {};
-
          $ctrl.sendMessage = function() {
              var cookieWObject = $cookies.getObject('blocChatCurrentUser');
              var username = cookieWObject.currentUser.name;
